@@ -5,7 +5,7 @@ from maze import Maze
 
 
 class GreedySearch(SearchAlgorithm):
-    def heuristic(self, node, goal):
+    def heuristic(self, node: tuple[int, int], goal: tuple[int, int]):
         """
         Compute the Manhattan distance between node and goal.
         """

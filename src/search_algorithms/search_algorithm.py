@@ -3,7 +3,13 @@ from maze import Maze
 
 
 class SearchStep:
-    def __init__(self, current_node, frontier, visited, parent):
+    def __init__(
+        self,
+        current_node: tuple[int, int],
+        frontier: list[tuple[int, int]],
+        visited: set[tuple[int, int]],
+        parent: dict[tuple[int, int], tuple[int, int]],
+    ):
         """
         :param current_node: The node that was expanded in this step.
         :param frontier: The list of nodes queued for expansion.
@@ -18,7 +24,7 @@ class SearchStep:
 
 class SearchResult:
     def __init__(
-        self, path: list[tuple[int]], nodes_expanded: int, steps: list[SearchStep]
+        self, path: list[tuple[int, int]], nodes_expanded: int, steps: list[SearchStep]
     ):
         """
         :param path: List of coordinates from start to end if a solution is found,

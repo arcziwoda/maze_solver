@@ -2,6 +2,7 @@ import os
 import time
 from colorama import Back, Style, init
 from search_algorithms.search_algorithm import SearchResult, SearchStep
+from maze import Maze
 
 init(autoreset=True)
 
@@ -14,7 +15,7 @@ def clear():
 
 
 class MazeVisualizer:
-    def __init__(self, maze):
+    def __init__(self, maze: Maze):
         self.maze = maze
 
     def print_legend(self):
@@ -28,7 +29,12 @@ class MazeVisualizer:
         print(Back.MAGENTA + "   " + Style.RESET_ALL + " - Final path")
         print(Back.WHITE + "   " + Style.RESET_ALL + " - Wall")
 
-    def display(self, current_step=None, final_path=None, opened_nodes=None):
+    def display(
+        self,
+        current_step: SearchStep | None = None,
+        final_path: list[tuple[int, int]] | None = None,
+        opened_nodes: set[tuple[int, int]] | None = None,
+    ):
         """
         Display the maze with colored output.
         """
