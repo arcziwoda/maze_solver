@@ -43,7 +43,7 @@ def visualize(
     """
     maze = load_maze(maze_path)
     search_algorithm = ALGORITHMS[algorithm]()
-    result = search_algorithm.search(maze)
+    result = search_algorithm.search(maze, track_steps=True)
     visualizer = MazeVisualizer(maze)
 
     if step_by_step:

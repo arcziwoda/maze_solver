@@ -2,7 +2,6 @@ import os
 import time
 from colorama import Back, Style, init
 from search_algorithms.search_algorithm import SearchResult, SearchStep
-from maze import Maze
 
 init(autoreset=True)
 
@@ -15,7 +14,7 @@ def clear():
 
 
 class MazeVisualizer:
-    def __init__(self, maze: Maze):
+    def __init__(self, maze):
         self.maze = maze
 
     def print_legend(self):

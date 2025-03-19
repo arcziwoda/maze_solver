@@ -14,7 +14,7 @@ class GreedySearch(SearchAlgorithm):
         return abs(x1 - x2) + abs(y1 - y2)
 
     @override
-    def search(self, maze: Maze) -> SearchResult:
+    def search(self, maze: Maze, track_steps: bool = True) -> SearchResult:
         steps = []
         nodes_expanded = 0
 
@@ -54,13 +54,14 @@ class GreedySearch(SearchAlgorithm):
                     if neighbor not in parent:
                         parent[neighbor] = current
 
-            steps.append(
-                SearchStep(
-                    current,
-                    current_frontier_nodes.copy(),
-                    visited.copy(),
-                    parent.copy(),
+            if track_steps:
+                steps.append(
+                    SearchStep(
+                        current,
+                        current_frontier_nodes.copy(),
+                        visited.copy(),
+                        parent.copy(),
+                    )
                 )
-            )
 
         return SearchResult([], nodes_expanded, steps)

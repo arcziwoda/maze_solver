@@ -24,7 +24,10 @@ class SearchStep:
 
 class SearchResult:
     def __init__(
-        self, path: list[tuple[int, int]], nodes_expanded: int, steps: list[SearchStep]
+        self,
+        path: list[tuple[int, int]],
+        nodes_expanded: int,
+        steps: list[SearchStep],
     ):
         """
         :param path: List of coordinates from start to end if a solution is found,
@@ -39,7 +42,7 @@ class SearchResult:
 
 class SearchAlgorithm(ABC):
     @abstractmethod
-    def search(self, maze: Maze) -> SearchResult:
+    def search(self, maze: Maze, track_steps: bool = False) -> SearchResult:
         """
         Executes the search on the given maze.
         """

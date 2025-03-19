@@ -14,7 +14,7 @@ class AStarSearch(SearchAlgorithm):
         return abs(x1 - x2) + abs(y1 - y2)
 
     @override
-    def search(self, maze: Maze) -> SearchResult:
+    def search(self, maze: Maze, track_steps: bool = False) -> SearchResult:
         steps = []
         nodes_expanded = 0
 
@@ -58,13 +58,14 @@ class AStarSearch(SearchAlgorithm):
                     current_frontier_nodes.append(neighbor)
                     counter += 1
 
-            steps.append(
-                SearchStep(
-                    current,
-                    current_frontier_nodes.copy(),
-                    visited.copy(),
-                    parent.copy(),
+            if track_steps:
+                steps.append(
+                    SearchStep(
+                        current,
+                        current_frontier_nodes.copy(),
+                        visited.copy(),
+                        parent.copy(),
+                    )
                 )
-            )
 
         return SearchResult([], nodes_expanded, steps)

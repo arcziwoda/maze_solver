@@ -6,7 +6,7 @@ from maze import Maze
 
 class RandomSearch(SearchAlgorithm):
     @override
-    def search(self, maze: Maze) -> SearchResult:
+    def search(self, maze: Maze, track_steps: bool = False) -> SearchResult:
         steps = []
         nodes_expanded = 0
 
@@ -23,10 +23,6 @@ class RandomSearch(SearchAlgorithm):
             nodes_expanded += 1
             visited.add(current)
 
-            steps.append(
-                SearchStep(current, list(frontier), set(visited), parent.copy())
-            )
-
             if current == goal:
                 path = self.reconstruct_path(parent, start, current)
                 return SearchResult(path, nodes_expanded, steps)
@@ -35,5 +31,10 @@ class RandomSearch(SearchAlgorithm):
                 if neighbor not in visited and neighbor not in frontier:
                     frontier.append(neighbor)
                     parent[neighbor] = current
+
+            if track_steps:
+                steps.append(
+                    SearchStep(current, list(frontier), set(visited), parent.copy())
+                )
 
         return SearchResult([], nodes_expanded, steps)
