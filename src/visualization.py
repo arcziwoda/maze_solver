@@ -49,25 +49,25 @@ class MazeVisualizer:
         grid[sy][sx] = Back.GREEN + "S" + Style.RESET_ALL
         grid[ey][ex] = Back.RED + "E" + Style.RESET_ALL
 
-        if current_step:
-            for vx, vy in current_step.visited:
-                if (vx, vy) not in (self.maze.start, self.maze.end):
-                    grid[vy][vx] = Back.BLUE + " " + Style.RESET_ALL
-            for fx, fy in current_step.frontier:
-                if (fx, fy) not in (self.maze.start, self.maze.end):
-                    grid[fy][fx] = Back.YELLOW + " " + Style.RESET_ALL
-
-        if final_path:
-            for px, py in final_path:
-                if (px, py) not in (self.maze.start, self.maze.end):
-                    grid[py][px] = Back.MAGENTA + " " + Style.RESET_ALL
-
         if opened_nodes:
             for ox, oy in opened_nodes:
                 if (ox, oy) not in (self.maze.start, self.maze.end) and grid[oy][
                     ox
                 ] == self.maze.grid[oy][ox]:
                     grid[oy][ox] = Back.BLUE + " " + Style.RESET_ALL
+
+        if current_step:
+            for fx, fy in current_step.frontier:
+                if (fx, fy) not in (self.maze.start, self.maze.end):
+                    grid[fy][fx] = Back.YELLOW + " " + Style.RESET_ALL
+            for vx, vy in current_step.visited:
+                if (vx, vy) not in (self.maze.start, self.maze.end):
+                    grid[vy][vx] = Back.BLUE + " " + Style.RESET_ALL
+
+        if final_path:
+            for px, py in final_path:
+                if (px, py) not in (self.maze.start, self.maze.end):
+                    grid[py][px] = Back.MAGENTA + " " + Style.RESET_ALL
 
         for row in grid:
             print("".join(row))
